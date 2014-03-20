@@ -26,7 +26,7 @@ if ['kibana', 'kibana::default'].any? {|r| run_context.loaded_recipe?(r)}
   raise RuntimeError, "wrong run_list order"
 end
 
-node.default['kibana'] = kibana
+kibana = node.default['kibana']
 kibana['install_type']  = 'git'
 kibana['webserver'] = 'nginx'
 kibana['git']['branch'] = 'v3.0.0'
