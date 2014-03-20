@@ -5,8 +5,8 @@ log_level = :info
 
 chef_run_list = %w[
   runit
-  kibana_auth
   kibana
+  kibana_auth
 ]
 
 chef_json = {

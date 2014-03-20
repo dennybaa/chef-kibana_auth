@@ -23,3 +23,12 @@ default['kibana']['auth']['config']['auth_file']      = "#{node['kibana']['auth'
 default['kibana']['auth']['config']['elasticsearch']  = nil
 
 default['kibana']['auth']['gems'] = ['sinatra', 'htauth', 'puma']
+
+override['kibana']['install_type']  = 'git'
+override['kibana']['webserver'] = 'nginx'
+override['kibana']['git']['branch'] = 'v3.0.0'
+override['kibana']['nginx']['template_cookbook'] = 'kibana_auth'
+override['kibana']['config']['panel_names'] = [
+  'histogram', 'map', 'goal', 'table', 'filtering', 'timepicker', 'text', 'hits',
+  'column', 'trends', 'bettermap', 'query', 'terms', 'stats', 'sparklines'
+]

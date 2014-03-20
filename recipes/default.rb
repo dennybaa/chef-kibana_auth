@@ -18,7 +18,6 @@
 #
 
 include_recipe 'runit'
-include_recipe 'kibana_auth::overrides'
 include_recipe 'kibana::default'
 
 node['kibana']['auth']['gems'].each {|g| gem_package g}
