@@ -23,14 +23,3 @@ default['kibana']['auth']['config']['auth_file']      = "#{node['kibana']['auth'
 default['kibana']['auth']['config']['elasticsearch']  = nil
 
 default['kibana']['auth']['gems'] = ['sinatra', 'htauth', 'puma']
-
-# overrides
-# milestone5 including bugfix regarding _mapping
-default['kibana']['install_type']  = 'git'
-default['kibana']['webserver'] = 'nginx'
-default['kibana']['git']['branch'] = 'v3.0.0'
-default['kibana']['nginx']['template_cookbook'] = 'kibana_auth'
-default['kibana']['config']['panel_names'] = [
-  'histogram', 'map', 'goal', 'table', 'filtering', 'timepicker', 'text', 'hits',
-  'column', 'trends', 'bettermap', 'query', 'terms', 'stats', 'sparklines'
-]
