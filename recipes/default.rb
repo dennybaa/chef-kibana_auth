@@ -31,7 +31,7 @@ cookbook_file node['kibana']['auth']['file_path'] do
   mode      0640
   owner     kibana_user
   group     kibana_user
-  cookbook  node['kibana']['auth']['file_cookook']
+  cookbook  node['kibana']['auth']['file_cookbook']
 end
 
 directory ::File.dirname(auth_dir) do
