@@ -75,12 +75,23 @@ es_url =  "#{node['kibana']['es_scheme']}" <<
 
 node.default['kibana']['auth']['config']['elasticsearch'] = es_url
 
-runit_service "kibana" do
-  options({
-    :rundir    => "#{node['kibana']['auth']['install_dir']}/current",
+template '/etc/init/kibana.conf' do
+  owner   'root'
+  group   'root'
+  mode    00644
+  source  'kibana-upstart.conf.erb'
+  variables(
+    :user       => kibana_user,
     :webserver  => node['kibana']['auth']['webserver'],
-    :webuser    => kibana_user,
     :bind       => node['kibana']['auth']['bind'],
-    :port       => node['kibana']['auth']['port']
-    })
+    :port       => node['kibana']['auth']['port'],
+    :rundir     => "#{node['kibana']['auth']['install_dir']}/current"
+  )
+end
+
+# !Runit can not be used due to application forking
+# Use upstart
+service "kibana" do
+  action   [:enable, :start]
+  provider Chef::Provider::Service::Upstart
 end
